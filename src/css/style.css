@@ -133,6 +133,10 @@
 .datepicker-table td.is-today {
   color: #8e24aa !important;
 }
+
+.datepicker-table td.is-selected {
+  background-color: #8e24aa !important;
+}
 /* end add */
 
 .favorites .favorite-action {
