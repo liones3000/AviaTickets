@@ -107,8 +107,36 @@
   font-size: 14px;
 }
 
-.favorites .delete-favorite {
+/* start add */
+/* .favorites .delete-favorite {
   margin-top: 10px;
+} */
+
+.container .card .card-content .input-field input:focus {
+  border-bottom: 1px solid #8e24aa;
+  box-shadow: 0 1px 0 0 #8e24aa;
+}
+
+.input-field .datepicker-date-display {
+  background-color: #8e24aa;
+}
+
+.input-field .datepicker-clear {
+  color: #ad1457;
+}
+
+.input-field .datepicker-cancel,
+.input-field .datepicker-done {
+  color: #6a1b9a;
+}
+
+.datepicker-table td.is-today {
+  color: #8e24aa !important;
+}
+/* end add */
+
+.favorites .favorite-action {
+  margin-top: 5px;
 }
 
 .ticket-card {

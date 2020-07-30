@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
       currency,
     });
 
+    currencyUI.lastSearchCurrency = currency;
     ticketsUI.renderTickets(ticketStore.lastSearch);
     // console.log(ticketStore.lastSearch);
   }
@@ -51,6 +52,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
       ticketStore.addTicketToFavorite(id_ticket);
       ticketsUI.renderFavoriteTickets(ticketStore.favoriteTickets);
+      // ticketsUI.addOneTicket(ticket);
     }
   });
 
@@ -64,11 +66,34 @@ document.addEventListener("DOMContentLoaded", (e) => {
       ticketsUI.renderFavoriteTickets(ticketStore.favoriteTickets);
     }
   });
-});
 
-// *1 - создать отдельный метод для получения airlines
-// *2 - в init добавить получение airlines
-// *3 - serializeAirlines
-// *4 - serializeTickets и переделать serializeCities и createShortCities и getCityCodeByKey
-// *5 - новые методы getAirlineNameByCode, getAirlineLogoByCode, getCityNameByCode
-// *6 - TicketsUI
+  favorite.addEventListener("click", ({ target }) => {
+    if (target.matches(".search-favorite")) {
+      HandlerFavoriteSearch(target);
+    }
+  });
+
+  async function HandlerFavoriteSearch(target) {
+    const idticket = target.dataset.ticket;
+    // console.log(idticket);
+    const ticket = ticketStore.getFavoriteTicket(idticket);
+    // console.log(ticket);
+    const origin = ticket.origin;
+    const destination = ticket.destination;
+    const depart_date = locations.formateDate(new Date(), "yyyy-MM");
+    const currency = currencyUI.currecyValue;
+    const return_date = "";
+    // console.log(origin, destination, currency);
+    // console.log(depart_date);
+
+    await ticketStore.fetchTickets({
+      origin,
+      destination,
+      depart_date,
+      return_date,
+      currency,
+    });
+
+    ticketsUI.renderTickets(ticketStore.lastSearch);
+  }
+});

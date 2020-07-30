@@ -18,8 +18,11 @@ class Ticket {
 
   deleteFavoriteTicket(idTicket) {
     delete this._favoriteTickets[idTicket];
-    console.log(this.favoriteTickets);
-    
+    // console.log(this.favoriteTickets);
+  }
+
+  getFavoriteTicket(idTicket) {
+    return this._favoriteTickets[idTicket];
   }
 
   async fetchTickets(params) {
@@ -31,7 +34,7 @@ class Ticket {
 
   serializeTickets(tickets) {
     return Object.values(tickets).map((ticket) => {
-      console.log(ticket);
+      // console.log(ticket);
       return {
         ...ticket,
         id_ticket: `${ticket.airline}-${(~~(Math.random() * 1e8)).toString(
@@ -55,7 +58,8 @@ class Ticket {
       (ticket) => ticket.id_ticket == idTicket
     );
     this.favoriteTickets = ticket;
-    console.log(this.favoriteTickets);
+    // console.log(this.favoriteTickets);
+    // return ticket; // ADD 15:55
   }
 }
 

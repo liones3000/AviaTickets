@@ -86,29 +86,6 @@ class Locations {
       return acc;
     }, {});
   }
-
-  // async fetchTickets(params) {
-  //   const response = await this.api.prices(params);
-  //   this.lastSearch = this.serializeTickets(response.data);
-  // }
-
-  // serializeTickets(tickets) {
-  //   return Object.values(tickets).map((ticket) => {
-  //     console.log(ticket);
-  //     return {
-  //       ...ticket,
-  //       origin_name: this.getCityNameByCode(ticket.origin),
-  //       destination_name: this.getCityNameByCode(ticket.destination),
-  //       airline_logo: this.getAirlineLogoByCode(ticket.airline),
-  //       airline_name: this.getAirlineNameByCode(ticket.airline),
-  //       departure_at: this.formateDate(
-  //         ticket.departure_at,
-  //         "dd MMM yyyy hh:mm"
-  //       ),
-  //       return_at: this.formateDate(ticket.return_at, "dd MMM yyyy hh:mm"),
-  //     };
-  //   });
-  // }
 }
 
 const locations = new Locations(api, { formateDate });

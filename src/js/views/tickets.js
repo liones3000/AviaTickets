@@ -4,7 +4,7 @@ class TicketsUI {
   constructor(currency) {
     this.container = document.querySelector(".tickets-sections .row");
     this.favoriteContainer = document.querySelector(".favorites #dropdown1");
-    this.currencySymbol = currency.currencySymbol;
+    this.getCurrencySymbol = currency.getCurrencySymbol.bind(currency);
   }
 
   renderTickets(tickets) {
@@ -16,9 +16,10 @@ class TicketsUI {
     }
 
     let fragment = "";
+    const currency = this.getCurrencySymbol();
 
     tickets.forEach((ticket) => {
-      const template = TicketsUI.ticketTemplate(ticket, this.currencySymbol);
+      const template = TicketsUI.ticketTemplate(ticket, currency);
       fragment += template;
     });
 
@@ -30,14 +31,20 @@ class TicketsUI {
     this.favoriteContainer.innerHTML = "";
 
     let fragment = "";
+    const currency = currencyUI.currencySymbol;
+    // console.log(currency.currencySymbol);
+
     Object.values(tickets).forEach((ticket) => {
-      const template = TicketsUI.favoriteTicketTemplate(
-        ticket,
-        this.currencySymbol
-      );
+      const template = TicketsUI.favoriteTicketTemplate(ticket, currency);
       fragment += template;
     });
     this.favoriteContainer.insertAdjacentHTML("afterbegin", fragment);
+  }
+
+  addOneTicket(ticket) { // Проверить добавление одного билета в избранные
+    const currency = currencyUI.currencySymbol;
+    const ticketStr = TicketsUI.favoriteTicketTemplate(ticket, currency);
+    this.favoriteContainer.insertAdjacentHTML("afterbegin", ticketStr);
   }
 
   clearContainer() {
@@ -113,10 +120,16 @@ class TicketsUI {
           <span class="ticket-transfers">Пересадок: ${ticket.transfers}</span>
           <span class="ticket-flight-number">Номер рейса: ${ticket.flight_number}</span>
         </div>
+        <div class="favorite-action">
         <a
           class="waves-effect waves-light btn-small pink darken-3 delete-favorite ml-auto"
           data-ticket="${ticket.id_ticket}">Delete</a
         >
+        <a
+          class="waves-effect waves-light btn-small purple darken-3 search-favorite ml-auto"
+          data-ticket="${ticket.id_ticket}">Search</a
+        >
+        </div>
       </div>
     </div>
     `;
