@@ -118,47 +118,54 @@
             <div class="card">
               <form name="locationControls">
                 <div class="card-content">
-                  <span class="card-title">Card Title</span>
+                  <span class="card-title">Поиск билетов</span>
                   <div class="input-field">
                     <input
                       type="text"
                       id="autocomplete-origin"
                       class="autocomplete"
+                      autocomplete="off"
                     />
-                    <label for="autocomplete-origin">Origin</label>
+                    <label for="autocomplete-origin">Страна отправления</label>
                   </div>
                   <div class="input-field">
                     <input
                       type="text"
                       id="autocomplete-destination"
+                      autocomplete="off"
                       class="autocomplete"
                     />
-                    <label for="autocomplete-destination">Destination</label>
+                    <label for="autocomplete-destination"
+                      >Страна прибытия</label
+                    >
                   </div>
                   <div class="input-field">
                     <input
                       type="text"
                       class="datepicker"
+                      autocomplete="off"
                       id="datepicker-depart"
                     />
-                    <label for="datepicker-depart">Depart date</label>
+                    <label for="datepicker-depart">Дата вылета</label>
                   </div>
                   <div class="input-field">
                     <input
                       type="text"
                       class="datepicker"
+                      autocomplete="off"
                       id="datepicker-return"
                     />
-                    <label for="datepicker-return">Return date</label>
+                    <label for="datepicker-return">Дата возвращения</label>
                   </div>
                 </div>
                 <div class="card-action d-flex">
                   <button
                     class="btn waves-effect waves-light purple darken-3"
+                    autocomplete="off"
                     type="submit"
                     name="action"
                   >
-                    Search
+                    Поиск
                     <i class="material-icons right">send</i>
                   </button>
                   <button
@@ -166,7 +173,7 @@
                     type="reset"
                     name="action"
                   >
-                    Reset
+                    Сбросить
                     <i class="material-icons right">cancel</i>
                   </button>
                 </div>
