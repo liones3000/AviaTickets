@@ -39,20 +39,15 @@ document.addEventListener("DOMContentLoaded", (e) => {
       currency,
     });
 
-    currencyUI.lastSearchCurrency = currency;
     ticketsUI.renderTickets(ticketStore.lastSearch);
-    // console.log(ticketStore.lastSearch);
   }
 
   container.addEventListener("click", (e) => {
     if (e.target.matches(".add-favorite")) {
       const id_ticket = e.target.dataset.ticket;
 
-      // console.log(e.target.dataset.ticket);
-
       ticketStore.addTicketToFavorite(id_ticket);
       ticketsUI.renderFavoriteTickets(ticketStore.favoriteTickets);
-      // ticketsUI.addOneTicket(ticket);
     }
   });
 
@@ -61,7 +56,6 @@ document.addEventListener("DOMContentLoaded", (e) => {
   favorite.addEventListener("click", (e) => {
     if (e.target.matches(".delete-favorite")) {
       const deleteBtn = e.target;
-      // console.log(deleteBtn.dataset.ticket);
       ticketStore.deleteFavoriteTicket(deleteBtn.dataset.ticket);
       ticketsUI.renderFavoriteTickets(ticketStore.favoriteTickets);
     }
@@ -75,16 +69,12 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
   async function HandlerFavoriteSearch(target) {
     const idticket = target.dataset.ticket;
-    // console.log(idticket);
     const ticket = ticketStore.getFavoriteTicket(idticket);
-    // console.log(ticket);
     const origin = ticket.origin;
     const destination = ticket.destination;
     const depart_date = locations.formateDate(new Date(), "yyyy-MM");
     const currency = currencyUI.currecyValue;
     const return_date = "";
-    // console.log(origin, destination, currency);
-    // console.log(depart_date);
 
     await ticketStore.fetchTickets({
       origin,

@@ -18,7 +18,6 @@ class Ticket {
 
   deleteFavoriteTicket(idTicket) {
     delete this._favoriteTickets[idTicket];
-    // console.log(this.favoriteTickets);
   }
 
   getFavoriteTicket(idTicket) {
@@ -27,14 +26,12 @@ class Ticket {
 
   async fetchTickets(params) {
     const response = await locations.api.prices(params);
-    // console.log(response.data); //{data: obj ticket}
-    this.lastSearch = this.serializeTickets(response.data);
-    // console.log(this.lastSearch);
+    const { currency } = params;
+    this.lastSearch = this.serializeTickets(response.data, currency);
   }
 
-  serializeTickets(tickets) {
+  serializeTickets(tickets, currency) {
     return Object.values(tickets).map((ticket) => {
-      // console.log(ticket);
       return {
         ...ticket,
         id_ticket: `${ticket.airline}-${(~~(Math.random() * 1e8)).toString(
@@ -49,6 +46,7 @@ class Ticket {
           "dd MMM yyyy hh:mm"
         ),
         return_at: locations.formateDate(ticket.return_at, "dd MMM yyyy hh:mm"),
+        currency: currency,
       };
     });
   }
@@ -58,8 +56,6 @@ class Ticket {
       (ticket) => ticket.id_ticket == idTicket
     );
     this.favoriteTickets = ticket;
-    // console.log(this.favoriteTickets);
-    // return ticket; // ADD 15:55
   }
 }
 

@@ -33,16 +33,16 @@ class Api {
     }
   }
 
-  async airlinesDouble() {
-    try {
-      const response = await fetch(`${this.url}/airlines`);
-      const result = await response.json();
-      return result;
-    } catch (err) {
-      console.log(`airlinesDouble: ${err}`);
-      Promise.reject(err);
-    }
-  }
+  // async airlinesDouble() {
+  //   try {
+  //     const response = await fetch(`${this.url}/airlines`);
+  //     const result = await response.json();
+  //     return result;
+  //   } catch (err) {
+  //     console.log(`airlinesDouble: ${err}`);
+  //     Promise.reject(err);
+  //   }
+  // }
 
   async prices(params) {
     try {

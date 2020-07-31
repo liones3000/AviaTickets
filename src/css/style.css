@@ -108,9 +108,11 @@
 }
 
 /* start add */
-/* .favorites .delete-favorite {
-  margin-top: 10px;
-} */
+
+.header .dropdown-content li > a,
+.dropdown-content li > span {
+  color: #8e24aa !important;
+}
 
 .container .card .card-content .input-field input:focus {
   border-bottom: 1px solid #8e24aa;
@@ -130,13 +132,28 @@
   color: #6a1b9a;
 }
 
-.datepicker-table td.is-today {
-  color: #8e24aa !important;
+.datepicker-table-wrapper .datepicker-table td.is-today {
+  color: #8e24aa;
+}
+
+.datepicker-table-wrapper .datepicker-table td.is-today[aria-selected="true"] {
+  color: #fff;
+}
+
+.card-content
+  input[type="text"]:not(.browser-default):focus:not([readonly])
+  + label {
+  color: #8e24aa;
 }
 
 .datepicker-table td.is-selected {
   background-color: #8e24aa !important;
 }
+
+.datepicker-table-wrapper .datepicker-day-button:focus {
+  background-color: rgb(142 36 170 / 0.25);
+}
+
 /* end add */
 
 .favorites .favorite-action {

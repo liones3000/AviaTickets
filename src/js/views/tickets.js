@@ -1,10 +1,9 @@
 import currencyUI from "./currency";
 
 class TicketsUI {
-  constructor(currency) {
+  constructor() {
     this.container = document.querySelector(".tickets-sections .row");
     this.favoriteContainer = document.querySelector(".favorites #dropdown1");
-    this.getCurrencySymbol = currency.getCurrencySymbol.bind(currency);
   }
 
   renderTickets(tickets) {
@@ -16,10 +15,9 @@ class TicketsUI {
     }
 
     let fragment = "";
-    const currency = this.getCurrencySymbol();
 
     tickets.forEach((ticket) => {
-      const template = TicketsUI.ticketTemplate(ticket, currency);
+      const template = TicketsUI.ticketTemplate(ticket);
       fragment += template;
     });
 
@@ -27,24 +25,15 @@ class TicketsUI {
   }
 
   renderFavoriteTickets(tickets) {
-    // console.log(tickets);
     this.favoriteContainer.innerHTML = "";
 
     let fragment = "";
-    const currency = currencyUI.currencySymbol;
-    // console.log(currency.currencySymbol);
 
     Object.values(tickets).forEach((ticket) => {
-      const template = TicketsUI.favoriteTicketTemplate(ticket, currency);
+      const template = TicketsUI.favoriteTicketTemplate(ticket);
       fragment += template;
     });
     this.favoriteContainer.insertAdjacentHTML("afterbegin", fragment);
-  }
-
-  addOneTicket(ticket) { // Проверить добавление одного билета в избранные
-    const currency = currencyUI.currencySymbol;
-    const ticketStr = TicketsUI.favoriteTicketTemplate(ticket, currency);
-    this.favoriteContainer.insertAdjacentHTML("afterbegin", ticketStr);
   }
 
   clearContainer() {
@@ -62,7 +51,7 @@ class TicketsUI {
     `;
   }
 
-  static ticketTemplate(ticket, currency) {
+  static ticketTemplate(ticket) {
     return `
     <div class="col s12 m6">
       <div class="card ticket-card">
@@ -82,7 +71,9 @@ class TicketsUI {
         </div>
         <div class="ticket-time-price d-flex align-items-center">
           <span class="ticket-time-departure">${ticket.departure_at}</span>
-          <span class="ticket-price ml-auto">${currency}${ticket.price}</span>
+          <span class="ticket-price ml-auto">${currencyUI.getCurrencySymbol2(
+            ticket.currency
+          )}${ticket.price}</span>
         </div>
         <div class="ticket-additional-info">
           <span class="ticket-transfers">Пересадок: ${ticket.transfers}</span>
@@ -94,7 +85,7 @@ class TicketsUI {
     `;
   }
 
-  static favoriteTicketTemplate(ticket, currency) {
+  static favoriteTicketTemplate(ticket) {
     return `
     <div class="favorite-item  d-flex align-items-start">
         <img
@@ -114,11 +105,15 @@ class TicketsUI {
         </div>
         <div class="ticket-time-price d-flex align-items-center">
           <span class="ticket-time-departure">${ticket.departure_at}</span>
-          <span class="ticket-price ml-auto">${currency}${ticket.price}</span>
+          <span class="ticket-price ml-auto">${currencyUI.getCurrencySymbol2(
+            ticket.currency
+          )}${ticket.price}</span>
         </div>
         <div class="ticket-additional-info">
           <span class="ticket-transfers">Пересадок: ${ticket.transfers}</span>
-          <span class="ticket-flight-number">Номер рейса: ${ticket.flight_number}</span>
+          <span class="ticket-flight-number">Номер рейса: ${
+            ticket.flight_number
+          }</span>
         </div>
         <div class="favorite-action">
         <a
@@ -136,6 +131,6 @@ class TicketsUI {
   }
 }
 
-const ticketsUI = new TicketsUI(currencyUI);
+const ticketsUI = new TicketsUI();
 
 export default ticketsUI;

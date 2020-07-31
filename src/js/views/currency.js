@@ -5,19 +5,20 @@ class CurrencyUI {
       USD: "$",
       EUR: "€",
     };
-    this.lastSearchCurrency = null;
+    // this.lastSearchCurrency = null;
   }
 
   get currecyValue() {
     return this.currency.value;
   }
 
-  getCurrencySymbol() {
-    return this.dictionary[this.currecyValue];
-  }
+  // getCurrencySymbol() {
+  //   return this.dictionary[this.currecyValue];
+  // }
 
-  get currencySymbol() {
-    return this.dictionary[this.lastSearchCurrency];
+  getCurrencySymbol2(key) {
+    // console.log(key);
+    return this.dictionary[key];
   }
 }
 

@@ -8,7 +8,7 @@ class Locations {
     this.cities = null;
     this.shortCities = {};
     this.airlines = {};
-    this.airlinesDbl = null;
+    // this.airlinesDbl = null;
     this.formateDate = helpers.formateDate;
   }
   async init() {
@@ -16,7 +16,7 @@ class Locations {
       this.api.countries(),
       this.api.cities(),
       this.api.airlines(),
-      this.api.airlinesDouble(),
+      // this.api.airlinesDouble(),
     ]).catch((err) => console.log(`init: ${err}`));
 
     const [countries, cities, airlines, airlinesDouble] = response;
@@ -24,7 +24,7 @@ class Locations {
     this.cities = this.serializeCities(cities);
     this.shortCities = this.createShortCities(this.cities);
     this.airlines = this.serializeAirlines(airlines);
-    this.airlinesDbl = airlinesDouble;
+    // this.airlinesDbl = airlinesDouble;
     // console.log(this.airlinesDbl);
 
     return response;
@@ -49,7 +49,6 @@ class Locations {
     return this.airlines[code] ? this.airlines[code].name : "";
   }
 
-  // *переделать createShortCities
   createShortCities(cities) {
     return Object.entries(cities).reduce((acc, [, city]) => {
       acc[city.full_name] = null;
@@ -63,7 +62,6 @@ class Locations {
       return acc;
     }, {});
   }
-  // *переделать serialize
   serializeCities(cities) {
     return cities.reduce((acc, city) => {
       const country_name = this.countries[city.country_code].name;
