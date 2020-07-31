@@ -77,9 +77,13 @@ class TicketsUI {
         </div>
         <div class="ticket-additional-info">
           <span class="ticket-transfers">Пересадок: ${ticket.transfers}</span>
-          <span class="ticket-flight-number">Номер рейса: ${ticket.flight_number}</span>
+          <span class="ticket-flight-number">Номер рейса: ${
+            ticket.flight_number
+          }</span>
         </div>
-        <a class="waves-effect waves-light btn-small green darken-1 add-favorite ml-auto" data-ticket="${ticket.id_ticket}">Add to favorites</a>
+        <a class="waves-effect waves-light btn-small green darken-1 add-favorite ml-auto" data-ticket="${
+          ticket.id_ticket
+        }">Добавить в избранные</a>
       </div>
     </div>
     `;
@@ -118,11 +122,11 @@ class TicketsUI {
         <div class="favorite-action">
         <a
           class="waves-effect waves-light btn-small pink darken-3 delete-favorite ml-auto"
-          data-ticket="${ticket.id_ticket}">Delete</a
+          data-ticket="${ticket.id_ticket}">Удалить</a
         >
         <a
           class="waves-effect waves-light btn-small purple darken-3 search-favorite ml-auto"
-          data-ticket="${ticket.id_ticket}">Search</a
+          data-ticket="${ticket.id_ticket}">Найти похожие</a
         >
         </div>
       </div>
